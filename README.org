@@ -1,0 +1,44 @@
+#+TITLE: ACR Tag
+
+* Acknowledgements
+This application is adapted from the ~harbor_tag~ repository created by Iris Garcia of ConsenSys.
+[https://github.com/iris-garcia/harbor_tag](https://github.com/iris-garcia/harbor_tag).
+
+* Description
+~docker_tag~ gives the current and/or the next ~semver~ tag for a given
+Azure Container Registry` repository.
+
+It allows the usage of environments with the following format:
+
+|-------------+--------------------------------------+--------------|
+| Environment | Regex                                | Example      |
+|-------------+--------------------------------------+--------------|
+| ~dev~         | ~^v[0-9]+\.[0-9]+.[0-9]+-dev\.[0-9]+$~ | ~v1.0.1.dev.8~ |
+| ~staging~     | ~v[0-9]+\.[0-9]+.[0-9]+-rc\.[0-9]+$~   | ~v2.2.0.rc.10~ |
+| ~prod~        | ~v[0-9]+\.[0-9]+.[0-9]+$~              | ~v3.0.5~       |
+|-------------+--------------------------------------+--------------|
+
+
+* Install
+#+begin_src sh
+  go build .
+#+end_src
+
+* Usage
+#+begin_src sh
+  $ ./acr_tag next --help
+  Based on the current tags of the image and the input from the user, generates the next tag
+
+Usage:
+  acr_tag next [flags]
+
+Flags:
+      --debug                Debug
+  -e, --environment string   Environment [dev, staging, prod]
+  -h, --help                 help for next
+  -p, --password string      Password to authenticate to the registry
+  -r, --registry string      Azure Container Registry URL
+      --repository string    Repository Name
+  -t, --type string          Tag type [major, minor, patch, rc, dev]
+  -u, --username string      Username to authenticate to the registry
+#+end_src
