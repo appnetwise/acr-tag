@@ -1,12 +1,12 @@
 #+TITLE: ACR Tag
 
 * Acknowledgements
-This application is adapted from the ~harbor_tag~ repository created by Iris Garcia of ConsenSys.
-[https://github.com/iris-garcia/harbor_tag](https://github.com/iris-garcia/harbor_tag).
+This application is adapted from the ~harbor_tag~ repository created by Iris Garcia of ConsenSys
+[[https://github.com/iris-garcia/harbor_tag][here]]
 
 * Description
-~docker_tag~ gives the current and/or the next ~semver~ tag for a given
-Azure Container Registry` repository.
+~acr_tag~ gives the current and/or the next ~semver~ tag for a given
+Azure Container Registry repository.
 
 It allows the usage of environments with the following format:
 
@@ -18,7 +18,6 @@ It allows the usage of environments with the following format:
 | ~prod~        | ~v[0-9]+\.[0-9]+.[0-9]+$~              | ~v3.0.5~       |
 |-------------+--------------------------------------+--------------|
 
-
 * Install
 #+begin_src sh
   go build .
@@ -26,8 +25,8 @@ It allows the usage of environments with the following format:
 
 * Usage
 #+begin_src sh
-  $ ./acr_tag next --help
-  Based on the current tags of the image and the input from the user, generates the next tag
+$ ./acr_tag next --help
+Based on the current tags of the image and the input from the user, generates the next tag
 
 Usage:
   acr_tag next [flags]
