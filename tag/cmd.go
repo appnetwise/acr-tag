@@ -36,7 +36,8 @@ func validateEnvType(environment string, tagType string) error {
 }
 
 func VersionCmd() {
-	fmt.Printf("Version %s, commit %s, built at %s by %s", app_version, commit, date, builtBy)
+	fmt.Printf("Version %s (commit %s)", app_version, commit)
+	fmt.Printf("Built at %s by %s", date, builtBy)
 }
 
 func LatestCmd(username string, password string, environment string,
