@@ -2,10 +2,13 @@ package tag
 
 import (
 	"errors"
+	"fmt"
 	"os"
 
 	log "github.com/sirupsen/logrus"
 )
+
+var GitRelease string
 
 func validateEnvType(environment string, tagType string) error {
 	valid := true
@@ -25,6 +28,12 @@ func validateEnvType(environment string, tagType string) error {
 	}
 
 	return nil
+}
+
+func VersionCmd() {
+	if len(GitRelease) > 0 {
+		fmt.Println(GitRelease)
+	}
 }
 
 func LatestCmd(username string, password string, environment string,
