@@ -8,7 +8,12 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-var GitRelease string
+var (
+	app_version = "dev"
+	commit      = "none"
+	date        = "unknown"
+	builtBy     = "unknown"
+)
 
 func validateEnvType(environment string, tagType string) error {
 	valid := true
@@ -24,16 +29,14 @@ func validateEnvType(environment string, tagType string) error {
 		valid = false
 	}
 	if !valid {
-		return errors.New("Invalid environment and tagType pair")
+		return errors.New("invalid environment and tagType pair")
 	}
 
 	return nil
 }
 
 func VersionCmd() {
-	if len(GitRelease) > 0 {
-		fmt.Println(GitRelease)
-	}
+	fmt.Printf("Version %s, commit %s, built at %s by %s", app_version, commit, date, builtBy)
 }
 
 func LatestCmd(username string, password string, environment string,
@@ -59,7 +62,7 @@ func NextCmd(username string, password string, tagType string, environment strin
 	// Check arguments
 	if len(environment) == 0 || len(registry) == 0 ||
 		len(repository) == 0 || len(username) == 0 || len(password) == 0 {
-		log.Error("Arguments missing")
+		log.Error("arguments missing")
 		os.Exit(1)
 	}
 
