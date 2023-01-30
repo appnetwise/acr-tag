@@ -1,4 +1,4 @@
-module github.com/blakyaks/acr_tag
+module github.com/blakyaks/acr-tag
 
 go 1.16
 

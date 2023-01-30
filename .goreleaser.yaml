@@ -1,10 +1,10 @@
-project_name: acr_tag
+project_name: acr-tag
 before:
   hooks:
     - go mod download
 builds:
   - main: .
-    binary: acr_tag
+    binary: acr-tag
     env:
       - CGO_ENABLED=0
     goos:

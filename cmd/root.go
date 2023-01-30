@@ -10,9 +10,9 @@ import (
 
 // rootCmd represents the base command when called without any subcommand
 var rootCmd = &cobra.Command{
-	Use:   "acr_tag",
-	Short: "Retrieve tag information of an Azure Container Registry repository",
-	Long:  "Based on the current tags of the repository and the input from the user, generates the next tag",
+	Use:   "acr-tag",
+	Short: "Retrieve tag information of an Azure Container Registry repository.",
+	Long:  "Based on the current tags of the repository and the input from the user, generates the next tag.",
 }
 
 // Execute - This is called by main.main()
