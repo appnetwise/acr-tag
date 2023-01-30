@@ -13,7 +13,10 @@ builds:
     goarch:
       - amd64
     ldflags:
-      - -s -w -X tag.app_version={{.Version}} -X tag.commit={{.Commit}} -X tag.date={{.Date}} -X tag.builtBy=goreleaser`.
+      - -s -w -X "tag.app_version={{.Version}}"
+      - -s -w -X "tag.commit={{.ShortCommit}}"
+      - -s -w -X "tag.date={{.CommitDate}}"
+      - -s -w -X "tag.builtBy=goreleaser"
 archives:
   - format_overrides:
     name_template: "{{ .ProjectName }}-{{ .Os }}-{{ .Arch }}"
