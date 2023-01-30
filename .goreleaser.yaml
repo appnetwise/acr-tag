@@ -12,6 +12,8 @@ builds:
       - darwin
     goarch:
       - amd64
+    ldflags:
+      - -s -w -X "tag.GitRelease={{.Env.GORELEASER_CURRENT_TAG}}"
 archives:
   - format_overrides:
     name_template: "{{ .ProjectName }}-{{ .Os }}-{{ .Arch }}"
