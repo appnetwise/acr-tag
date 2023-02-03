@@ -24,7 +24,7 @@ var nextCmd = &cobra.Command{
 		registry, _ := cmd.Flags().GetString("registry")
 		repository, _ := cmd.Flags().GetString("repository")
 		debug, _ := cmd.Flags().GetBool("debug")
-		tag.NextCmd(username, password, tagType, environment, registry, repository, debug)
+		tag.NextCmd(username, password, tagType, tag.Environment(environment), registry, repository, debug)
 	},
 }
 
@@ -34,7 +34,7 @@ func init() {
 	nextCmd.Flags().StringP("type", "t", "", "Tag type [major, minor, patch, rc, dev]")
 	nextCmd.Flags().StringP("environment", "e", "", "Environment [dev, staging, prod]")
 	nextCmd.Flags().StringP("registry", "r", "", "Azure Container Registry URL")
-	nextCmd.Flags().StringP("repository", "", "", "Repository Name")
+	nextCmd.Flags().StringP("repository", "i", "", "Repository Image Name")
 	nextCmd.Flags().BoolP("debug", "", false, "Debug")
 	rootCmd.AddCommand(nextCmd)
 

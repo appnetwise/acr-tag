@@ -10,13 +10,13 @@ Azure Container Registry repository.
 
 It allows the usage of environments with the following format:
 
-|-------------+--------------------------------------+--------------|
-| Environment | Regex                                | Example      |
-|-------------+--------------------------------------+--------------|
-| ~dev~         | ~^v[0-9]+\.[0-9]+.[0-9]+-dev\.[0-9]+$~ | ~v1.0.1.dev.8~ |
-| ~staging~     | ~v[0-9]+\.[0-9]+.[0-9]+-rc\.[0-9]+$~   | ~v2.2.0.rc.10~ |
+|---------------+----------------------------------------+----------------|
+| Environment   | Regex                                  | Example        |
+|---------------+----------------------------------------+----------------|
+| ~dev~         | ~^v[0-9]+\.[0-9]+.[0-9]+-dev\.[0-9]+$~ | ~v1.0.1-dev.8~ |
+| ~staging~     | ~v[0-9]+\.[0-9]+.[0-9]+-rc\.[0-9]+$~   | ~v2.2.0-rc.10~ |
 | ~prod~        | ~v[0-9]+\.[0-9]+.[0-9]+$~              | ~v3.0.5~       |
-|-------------+--------------------------------------+--------------|
+|---------------+----------------------------------------+----------------|
 
 * Install
 #+begin_src sh
@@ -25,11 +25,11 @@ It allows the usage of environments with the following format:
 
 * Usage
 #+begin_src sh
-$ ./acr_tag next --help
+❯ ./acr-tag next --help
 Based on the current tags of the image and the input from the user, generates the next tag
 
 Usage:
-  acr_tag next [flags]
+  acr-tag next [flags]
 
 Flags:
       --debug                Debug
@@ -37,7 +37,7 @@ Flags:
   -h, --help                 help for next
   -p, --password string      Password to authenticate to the registry
   -r, --registry string      Azure Container Registry URL
-      --repository string    Repository Name
+  -i, --repository string    Repository Image Name
   -t, --type string          Tag type [major, minor, patch, rc, dev]
   -u, --username string      Username to authenticate to the registry
 #+end_src

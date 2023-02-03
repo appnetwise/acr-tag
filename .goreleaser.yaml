@@ -16,7 +16,6 @@ builds:
       - -s -w -X "github.com/blakyaks/acr-tag/tag.app_version={{.Version}}"
       - -s -w -X "github.com/blakyaks/acr-tag/tag.commit={{.ShortCommit}}"
       - -s -w -X "github.com/blakyaks/acr-tag/tag.date={{.CommitDate}}"
-      - -s -w -X "github.com/blakyaks/acr-tag/tag.builtBy=goreleaser"
 archives:
   - format_overrides:
     name_template: "{{ .ProjectName }}-{{ .Os }}-{{ .Arch }}"

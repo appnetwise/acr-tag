@@ -16,7 +16,9 @@ var versionCmd = &cobra.Command{
 	TraverseChildren: true,
 	Short:            "Shows the version information",
 	Long:             `Shows the version information for this utility`,
-	Run:              func(cmd *cobra.Command, args []string) { tag.VersionCmd() },
+	Run: func(cmd *cobra.Command, args []string) {
+		tag.VersionCmd()
+	},
 }
 
 func init() {

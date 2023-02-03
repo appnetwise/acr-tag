@@ -1,12 +1,25 @@
 package tag
 
-import "time"
+import (
+	"errors"
+	"time"
+)
 
-type DockerImage struct {
+type ImageTarget struct {
 	Username   string
 	Password   string
 	Registry   string
 	Repository string
+}
+
+func (i ImageTarget) Validate() error {
+	if len(i.Repository) == 0 {
+		return errors.New("a target repository has not been specified")
+	}
+	if len(i.Registry) == 0 {
+		return errors.New("the target registry has not been specified")
+	}
+	return nil
 }
 
 type Repository struct {

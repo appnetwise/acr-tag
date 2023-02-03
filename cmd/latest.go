@@ -32,7 +32,7 @@ func init() {
 	latestCmd.Flags().StringP("password", "p", "", "Password to authenticate to the registry")
 	latestCmd.Flags().StringP("environment", "e", "", "Environment [dev, staging, prod]")
 	latestCmd.Flags().StringP("registry", "r", "", "Azure Container Registry URL")
-	latestCmd.Flags().StringP("repository", "", "", "Repository Name")
+	latestCmd.Flags().StringP("repository", "i", "", "Repository Image Name")
 	latestCmd.Flags().BoolP("debug", "", false, "Debug")
 	rootCmd.AddCommand(latestCmd)
 
