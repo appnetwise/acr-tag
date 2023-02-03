@@ -17,5 +17,5 @@ func (t TagType) IsValid() error {
 	case TAG_DEV, TAG_RC, TAG_PATCH, TAG_MINOR, TAG_MAJOR:
 		return nil
 	}
-	return errors.New("an invalid or unsupported tag type was provided.")
+	return errors.New("an invalid or unsupported tag type was provided")
 }
