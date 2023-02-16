@@ -24,7 +24,8 @@ var nextCmd = &cobra.Command{
 		registry, _ := cmd.Flags().GetString("registry")
 		repository, _ := cmd.Flags().GetString("repository")
 		debug, _ := cmd.Flags().GetBool("debug")
-		tag.NextCmd(username, password, tagType, tag.Environment(environment), registry, repository, debug)
+		version, _ := cmd.Flags().GetString("version")
+		tag.NextCmd(username, password, tagType, tag.Environment(environment), registry, repository, debug, version)
 	},
 }
 
@@ -36,6 +37,7 @@ func init() {
 	nextCmd.Flags().StringP("registry", "r", "", "Azure Container Registry URL")
 	nextCmd.Flags().StringP("repository", "i", "", "Repository Image Name")
 	nextCmd.Flags().BoolP("debug", "", false, "Debug")
+	nextCmd.Flags().StringP("version", "v", "", "Version string to be processed locally")
 	rootCmd.AddCommand(nextCmd)
 
 	formatter := new(prefixed.TextFormatter)

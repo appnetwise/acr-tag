@@ -71,7 +71,7 @@ func LatestCmd(username string, password string, environment string,
 }
 
 func NextCmd(username string, password string, tagType string, environment Environment,
-	registry string, repository string, debug bool) {
+	registry string, repository string, debug bool, version string) {
 
 	e := Environment(environment)
 	t := TagType(tagType)
@@ -82,27 +82,45 @@ func NextCmd(username string, password string, tagType string, environment Envir
 		Repository: repository,
 	}
 
-	// Validate Image Target
-	if err := i.Validate(); err != nil {
-		log.Error(err)
-		os.Exit(1)
-	}
-
-	// Validate environment
-	if err := e.IsValid(); err != nil {
-		log.Error(err)
-		os.Exit(1)
-	}
-
-	// Check valid tagType is passed to environment
-	if err := e.ValidateTag(t); err != nil {
-		log.Error(err)
-		os.Exit(1)
-	}
-
 	if debug {
 		log.SetLevel(log.DebugLevel)
 	}
 
-	nextTag(e, i, t, debug)
+	// Check for static version check
+	if version == "" {
+
+		// Validate environment
+		if err := e.IsValid(); err != nil {
+			log.Error(err)
+			os.Exit(1)
+		}
+
+		// Check valid tagType is passed to environment
+		if err := e.ValidateTag(t); err != nil {
+			log.Error(err)
+			os.Exit(1)
+		}
+
+		// Validate Image Target
+		if err := i.Validate(); err != nil {
+			log.Error(err)
+			os.Exit(1)
+		}
+
+		// Query registry for next tag
+		nextTag(e, i, t, debug)
+
+	} else {
+
+		// Check valid tagType is passed to command
+		if err := t.IsValid(); err != nil {
+			log.Error(err)
+			os.Exit(1)
+		}
+
+		// Perform local calculation based on version
+		nextTagFromVersionString(version, t)
+
+	}
+
 }

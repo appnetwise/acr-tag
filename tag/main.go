@@ -45,6 +45,22 @@ func latestTag(e Environment, i ImageTarget, debug bool) {
 	fmt.Println(currentVersion.Original())
 }
 
+func nextTagFromVersionString(v string, t TagType) {
+
+	var currentVersion *version.Version
+	currentVersion, _ = version.NewVersion(v)
+	log.Debugf("Current version: %s\n", currentVersion.Original())
+
+	nextVersion, err := getNextVersion(currentVersion, t)
+	if err != nil {
+		log.Error(err)
+		os.Exit(1)
+	}
+
+	fmt.Println(nextVersion.Original())
+
+}
+
 func nextTag(e Environment, i ImageTarget, t TagType, debug bool) {
 
 	var currentVersion *version.Version
@@ -88,9 +104,9 @@ func getNextVersion(v *version.Version, tagType TagType) (*version.Version, erro
 	var vstr string
 	switch tagType {
 	case TAG_MAJOR:
-		rMajor := regexp.MustCompile(`^v([0-9]+)(.*)$`)
+		rMajor := regexp.MustCompile(`^(v[0-9]+)(\.)([0-9]+)(\.)([0-9]+)(.*)$`)
 		new := v.Segments64()[0] + 1
-		vstr = rMajor.ReplaceAllString(v.Original(), fmt.Sprintf("v%d${2}", new))
+		vstr = rMajor.ReplaceAllString(v.Original(), fmt.Sprintf("v%d${2}%d${4}%d", new, 0, 0))
 	case TAG_MINOR:
 		rMinor := regexp.MustCompile(`^(v[0-9]+\.)([0-9]+)(.*)$`)
 		new := v.Segments64()[1] + 1
