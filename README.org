@@ -1,8 +1,8 @@
 #+TITLE: ACR Tag
 
 * Acknowledgements
-This application is adapted from the ~harbor_tag~ repository created by Iris Garcia of ConsenSys
-[[https://github.com/iris-garcia/harbor_tag][here]]
+This application is adapted from the ~harbor_tag~ repository created by blakyaks
+[[https://github.com/blakyaks/acr-tag][here]]
 
 * Description
 ~acr_tag~ gives the current and/or the next ~semver~ tag for a given

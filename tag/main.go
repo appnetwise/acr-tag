@@ -131,6 +131,14 @@ func getNextVersion(v *version.Version, tagType TagType) (*version.Version, erro
 			return nil, err
 		}
 		vstr = rDev.ReplaceAllString(v.Original(), fmt.Sprintf("${1}%d", n+1))
+	case TAG_QA:
+		rQa := regexp.MustCompile(`^(v[0-9]+\.[0-9]+\.[0-9]+-qa\.)([0-9]+)$`)
+		match := rQa.FindStringSubmatch(v.Original())
+		n, err := strconv.Atoi(match[2])
+		if err != nil {
+			return nil, err
+		}
+		vstr = rQa.ReplaceAllString(v.Original(), fmt.Sprintf("${1}%d", n+1))
 	}
 
 	nextVersion, err := version.NewVersion(vstr)

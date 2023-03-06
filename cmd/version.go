@@ -4,7 +4,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/blakyaks/acr-tag/tag"
+	"github.com/carbonplace/acr-tag/tag"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	prefixed "github.com/x-cray/logrus-prefixed-formatter"
