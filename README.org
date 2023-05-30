@@ -23,6 +23,7 @@ It allows the usage of environments with the following format:
 * Install
 #+begin_src sh
   go build .
+  in linux: tar -czvf acr-tag-linux-amd64.tar.gz acr-tag README.org 
 #+end_src
 
 * Usage
