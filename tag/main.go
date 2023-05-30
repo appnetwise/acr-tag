@@ -115,6 +115,14 @@ func getNextVersion(v *version.Version, tagType TagType) (*version.Version, erro
 		rPatch := regexp.MustCompile(`^(v[0-9]+\.[0-9]+\.)([0-9]+)(.*)$`)
 		new := v.Segments64()[2] + 1
 		vstr = rPatch.ReplaceAllString(v.Original(), fmt.Sprintf("${1}%d${3}", new))
+	case TAG_UAT:
+		rUat := regexp.MustCompile(`^(v[0-9]+\.[0-9]+\.[0-9]+-uat\.)([0-9]+)$`)
+		match := rUat.FindStringSubmatch(v.Original())
+		n, err := strconv.Atoi(match[2])
+		if err != nil {
+			return nil, err
+		}
+		vstr = rUat.ReplaceAllString(v.Original(), fmt.Sprintf("${1}%d", n+1))
 	case TAG_RC:
 		rRc := regexp.MustCompile(`^(v[0-9]+\.[0-9]+\.[0-9]+-rc\.)([0-9]+)$`)
 		match := rRc.FindStringSubmatch(v.Original())

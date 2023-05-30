@@ -6,7 +6,8 @@ type Environment string
 
 const (
 	ENV_DEV     Environment = "dev"
-	ENV_QA     	Environment = "qa"
+	ENV_QA      Environment = "qa"
+	ENV_UAT     Environment = "uat"
 	ENV_STAGING Environment = "staging"
 	ENV_PROD    Environment = "prod"
 )
@@ -17,6 +18,8 @@ func (e Environment) Regex() (string, error) {
 		return `^v[0-9]+\.[0-9]+.[0-9]+-dev\.[0-9]+$`, nil
 	case ENV_QA:
 		return `^v[0-9]+\.[0-9]+.[0-9]+-qa\.[0-9]+$`, nil
+	case ENV_UAT:
+		return `^v[0-9]+\.[0-9]+.[0-9]+-uat\.[0-9]+$`, nil
 	case ENV_STAGING:
 		return `^v[0-9]+\.[0-9]+.[0-9]+-rc\.[0-9]+$`, nil
 	case ENV_PROD:
@@ -31,6 +34,8 @@ func (e Environment) DefaultVersion() (string, error) {
 		return "v0.0.0-dev.0", nil
 	case ENV_QA:
 		return "v0.0.0-qa.0", nil
+	case ENV_UAT:
+		return "v0.0.0-uat.0", nil
 	case ENV_STAGING:
 		return "v0.0.0-rc.0", nil
 	case ENV_PROD:
@@ -41,7 +46,7 @@ func (e Environment) DefaultVersion() (string, error) {
 
 func (e Environment) IsValid() error {
 	switch e {
-	case ENV_DEV, ENV_QA, ENV_STAGING, ENV_PROD:
+	case ENV_DEV, ENV_QA, ENV_UAT, ENV_STAGING, ENV_PROD:
 		return nil
 	}
 	return errors.New("an invalid or unsupported environment type was provided")
@@ -52,6 +57,9 @@ func (e Environment) ValidateTag(t TagType) error {
 		return errors.New("release candidate tags cannot be used with development environments")
 	}
 	if e == ENV_QA && t == TAG_RC {
+		return errors.New("release candidate tags cannot be used with QA environments")
+	}
+	if e == ENV_UAT && t == TAG_RC {
 		return errors.New("release candidate tags cannot be used with QA environments")
 	}
 	if e == ENV_STAGING && t == TAG_DEV {
