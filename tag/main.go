@@ -181,7 +181,7 @@ func getTags(i *ImageTarget, regex string) ([]*version.Version, error) {
 func getRepo(i *ImageTarget) (*Repository, error) {
 
 	repo := Repository{}
-	url := fmt.Sprintf("%s/acr/v1/%s/_tags", i.Registry, i.Repository)
+	url := fmt.Sprintf("%s/acr/v1/%s/_tags?n=10000000000", i.Registry, i.Repository)
 	r, err := doGet(url, nil, i.Username, i.Password)
 	if err != nil {
 		return nil, err
