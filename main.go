@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/carbonplace/acr-tag/cmd"
+	"github.com/appnetwise/acr-tag/cmd"
 )
 
 func main() {

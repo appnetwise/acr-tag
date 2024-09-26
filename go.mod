@@ -1,4 +1,4 @@
-module github.com/carbonplace/acr-tag
+module github.com/appnetwise/acr-tag
 
 go 1.16
 
