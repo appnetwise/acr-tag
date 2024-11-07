@@ -5,6 +5,7 @@ import "errors"
 type TagType string
 
 const (
+	TAG_DEMO  TagType = "demo"
 	TAG_DEV   TagType = "dev"
 	TAG_QA    TagType = "qa"
 	TAG_RC    TagType = "rc"
@@ -16,7 +17,7 @@ const (
 
 func (t TagType) IsValid() error {
 	switch t {
-	case TAG_DEV, TAG_QA, TAG_UAT, TAG_RC, TAG_PATCH, TAG_MINOR, TAG_MAJOR:
+	case TAG_DEV, TAG_DEMO, TAG_QA, TAG_UAT, TAG_RC, TAG_PATCH, TAG_MINOR, TAG_MAJOR:
 		return nil
 	}
 	return errors.New("an invalid or unsupported tag type was provided")
